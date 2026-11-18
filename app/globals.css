@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* The app icon's colors: deep teal rings, a copper ring, a pale teal one. */
+@theme {
+  --color-teal: #1a7479;
+  --color-teal-deep: #106268;
+  --color-mist: #5fa49f;
+  --color-copper: #e07335;
+}
+
+:root {
+  --bg: #f7f9f9;
+  --ink: #0f1c1d;
+  --muted: #586b6c;
+  --card: rgba(255, 255, 255, 0.72);
+  --line: rgba(15, 28, 29, 0.09);
+  --accent: #1a7479; /* teal text and icons */
+  --glow-teal: rgba(26, 116, 121, 0.16);
+  --glow-copper: rgba(224, 115, 53, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #081011;
+    --ink: #ecf3f3;
+    --muted: #93a6a7;
+    --card: rgba(255, 255, 255, 0.05);
+    --line: rgba(255, 255, 255, 0.09);
+    --accent: #74c2bb;
+    --glow-teal: rgba(95, 164, 159, 0.16);
+    --glow-copper: rgba(224, 115, 53, 0.12);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Soft teal and copper light behind the page's top, like the icon's rings. */
+.aura {
+  background:
+    radial-gradient(40rem 28rem at 15% -10%, var(--glow-teal), transparent 70%),
+    radial-gradient(36rem 26rem at 95% 10%, var(--glow-copper), transparent 70%);
+}
+
+/* The privacy policy and support text (content/legal.ts). */
+.legal h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 0.75rem;
+}
+.legal h2 {
+  font-size: 1.3rem;
+  font-weight: 650;
+  margin: 2.5rem 0 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.legal h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.25rem;
+}
+.legal p,
+.legal li {
+  margin: 0.6rem 0;
+  line-height: 1.75;
+}
+.legal ul {
+  padding-left: 1.4rem;
+  list-style: disc;
+}
+.legal li::marker {
+  color: var(--accent);
+}
+.legal a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal b {
+  font-weight: 600;
+}
+.legal .muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
