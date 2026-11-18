@@ -1,100 +1,92 @@
-// Everything the site says outside the legal pages, in English and Simplified Chinese.
+// Everything the site says outside the legal pages, in English and Simplified Chinese. The
+// language is the browser's (next.config.ts): there is no switch.
 
 export type Lang = "en" | "zh";
 
-/** A page's address in a language: English at the root, Chinese under /zh. */
-export function href(lang: Lang, path: "/" | "/privacy" | "/support"): string {
-  if (lang === "en") return path;
-  return path === "/" ? "/zh" : `/zh${path}`;
-}
-
-export type FeatureIcon = "route" | "charger" | "ask" | "wake" | "book" | "voice";
+export type AskIcon = "route" | "charger" | "stop" | "weather" | "web" | "car";
 
 export const COPY = {
   en: {
-    nav: { features: "Features", privacy: "Privacy", support: "Support", other: "中文" },
-    eyebrow: "The voice assistant for your Tesla",
-    title: "Your Tesla,\nby voice.", // \n: where the line breaks
-    lead: "Tell Omni where you are going. It plans the route, stops and all, and sends it straight to your car.",
+    nav: { how: "How it works", privacy: "Privacy", support: "Support" },
+    badge: "Voice assistant for Tesla",
+    title: "Just say where.",
+    title2: "Omni sends it\nto your Tesla.", // \n: where the line breaks on wider screens
+    lead: "Tell Omni where you are going. It finds the places, plans the stops and sends the route to your car, while your hands stay on the wheel.",
     soon: "Coming soon to the App Store",
-    more: "See what it does",
-    chat: {
-      you: "Go to the nearest McDonald's, then take me home.",
-      omni: "McDonald's on Main St first, then home. It's on your Tesla.",
+    how: "How it works",
+    // The call on the phone: what you say, what Omni does, what it answers.
+    call: {
+      you: "Nearest McDonald's, then home",
+      search: "Search maps for “McDonald's”",
+      navigate: "Navigate: McDonald's → Home",
+      omni: "McDonald's on Main St first, then home. The route is on your Tesla.",
+      listening: "Listening…",
     },
-    featuresTitle: "Everything, with your hands on the wheel",
-    features: [
-      { icon: "route", title: "Just say where to",
-        text: "“The nearest McDonald's, then home.” Omni finds the places, plans the stops and sends the whole trip to your Tesla." },
-      { icon: "charger", title: "Superchargers, live",
-        text: "Superchargers nearby with the stalls free right now, along with your battery and range." },
-      { icon: "ask", title: "Ask anything",
-        text: "The weather, opening hours, scores, the news: Omni looks it up while you drive." },
-      { icon: "wake", title: "Hey Omni",
-        text: "Start without touching your phone. The wake word is heard on your phone, never in the cloud." },
-      { icon: "book", title: "Address Book",
-        text: "Omni remembers the places you go, so the next one is a tap away and “take me home” just works." },
-      { icon: "voice", title: "Your language, your voice",
-        text: "Speak English or Chinese, or mix them, and pick the voice Omni answers in." },
-    ] as { icon: FeatureIcon; title: string; text: string }[],
-    howTitle: "Three steps, no screens",
-    how: ["Swipe up, or say “Hey Omni”", "Say where you are going", "The route is on your Tesla"],
-    privacyTitle: "Private by design",
-    privacy: [
-      "“Hey Omni” is recognized on your phone.",
-      "Recordings are never kept.",
-      "No ads, no tracking, and your data is never sold.",
-      "Delete conversations, places or your whole account at any time.",
+    askTitle: "Talk to it like a passenger.",
+    askLead: "In English, in Chinese, or both at once.",
+    asks: [
+      { icon: "route", text: "Nearest McDonald's, then home." },
+      { icon: "charger", text: "Find a Supercharger with free stalls." },
+      { icon: "stop", text: "Add a coffee stop on the way." },
+      { icon: "weather", text: "Will it rain when I get there?" },
+      { icon: "web", text: "What time does Costco close?" },
+      { icon: "car", text: "How much range do I have left?" },
+    ] as { icon: AskIcon; text: string }[],
+    stepsTitle: "Three steps. Eyes on the road.",
+    steps: [
+      { title: "Start a call", text: "Swipe up in the app, or just say “Hey Omni”." },
+      { title: "Say where", text: "A place, a few stops, a charger on the way." },
+      { title: "Drive", text: "Omni sends the route to your Tesla." },
     ],
-    privacyLink: "Read the privacy policy",
-    disclaimer: "Omni Auto is an independent app, not affiliated with or endorsed by Tesla, Inc.",
+    privacyTitle: "Private by design.",
+    privacy: ["“Hey Omni” is heard on your phone", "Recordings are never kept", "No ads, no tracking"],
+    privacyLink: "Privacy policy",
     madeBy: "Made by",
+    disclaimer: "Omni Auto is an independent app, not affiliated with or endorsed by Tesla, Inc.",
     meta: {
-      title: "Omni Auto: your Tesla, by voice",
-      description: "Omni is the voice assistant for your Tesla: say where you are going, and the route, stops and all, goes straight to your car.",
+      title: "Omni Auto: just say where",
+      description: "Omni is a voice assistant for Tesla: say where you are going, and it sends the route, stops and all, to your car.",
     },
   },
   zh: {
-    nav: { features: "功能", privacy: "隐私", support: "支持", other: "English" },
-    eyebrow: "你的 Tesla 语音助手",
-    title: "开 Tesla，\n动动嘴就行。",
-    lead: "告诉 Omni 你要去哪。它会规划路线、安排途经点，直接发到你的车上。",
+    nav: { how: "怎么用", privacy: "隐私", support: "支持" },
+    badge: "Tesla 语音助手",
+    title: "开口，就出发。",
+    title2: "Omni 把路线\n发到你的 Tesla。",
+    lead: "告诉 Omni 你要去哪。它找到地点、排好途经点，把路线发到你的车上，你的手一直在方向盘上。",
     soon: "即将上架 App Store",
-    more: "看看能做什么",
-    chat: {
-      you: "导航去最近的麦当劳，然后回家。",
-      omni: "好的，先去 Main St 的麦当劳，再回家，路线已经发到你的 Tesla。",
+    how: "怎么用",
+    call: {
+      you: "去最近的麦当劳，然后回家",
+      search: "在地图上搜索“麦当劳”",
+      navigate: "导航：麦当劳 → 家",
+      omni: "先去 Main St 的麦当劳，再回家，路线已经发到你的 Tesla。",
+      listening: "在听…",
     },
-    featuresTitle: "手不离方向盘，什么都能办",
-    features: [
-      { icon: "route", title: "直接说想去哪",
-        text: "“去最近的麦当劳，然后回家。”Omni 找到地点、排好途经点，把整条路线发到你的 Tesla。" },
-      { icon: "charger", title: "超充，实时",
-        text: "附近超充站现在有几个空位，还有你的电量和续航，一问就知道。" },
-      { icon: "ask", title: "还可以问别的",
-        text: "天气、营业时间、比分、新闻，开车的时候 Omni 帮你查。" },
-      { icon: "wake", title: "Hey Omni",
-        text: "不碰手机就能开始。唤醒词在手机上识别，从不上传云端。" },
-      { icon: "book", title: "地址簿",
-        text: "Omni 记住你去过的地点，下一个目的地点一下就走，说“回家”就能导航。" },
-      { icon: "voice", title: "你的语言，你的声音",
-        text: "说中文、说英文，混着说都行，还能挑 Omni 回答你的声音。" },
-    ] as { icon: FeatureIcon; title: string; text: string }[],
-    howTitle: "三步，不用看屏幕",
-    how: ["上滑，或说“Hey Omni”", "说出你要去哪", "路线已经在你的 Tesla 上"],
-    privacyTitle: "隐私，从设计开始",
-    privacy: [
-      "“Hey Omni”在手机上识别。",
-      "录音从不保存。",
-      "不投广告，不追踪，也从不出售你的数据。",
-      "对话、地点，甚至整个账号，随时都能删除。",
+    askTitle: "像跟副驾说话一样。",
+    askLead: "说中文、说英文，混着说都行。",
+    asks: [
+      { icon: "route", text: "去最近的麦当劳，然后回家。" },
+      { icon: "charger", text: "找个有空位的超充。" },
+      { icon: "stop", text: "路上加一个咖啡店。" },
+      { icon: "weather", text: "到那边会下雨吗？" },
+      { icon: "web", text: "Costco 几点关门？" },
+      { icon: "car", text: "还能跑多少公里？" },
+    ] as { icon: AskIcon; text: string }[],
+    stepsTitle: "三步，眼睛不离路面。",
+    steps: [
+      { title: "开始通话", text: "在 App 里上滑，或者直接说“Hey Omni”。" },
+      { title: "说出去哪", text: "一个地点，几个途经点，路上的超充。" },
+      { title: "出发", text: "Omni 把路线发到你的 Tesla。" },
     ],
-    privacyLink: "阅读隐私政策",
-    disclaimer: "Omni Auto 是独立的第三方 App，与 Tesla, Inc. 没有关联，也未获其认可。",
+    privacyTitle: "隐私，从设计开始。",
+    privacy: ["“Hey Omni”在手机上识别", "录音从不保存", "没有广告，不追踪"],
+    privacyLink: "隐私政策",
     madeBy: "作者",
+    disclaimer: "Omni Auto 是独立的第三方 App，与 Tesla, Inc. 没有关联，也未获其认可。",
     meta: {
-      title: "Omni Auto：开 Tesla，动动嘴就行",
-      description: "Omni 是你的 Tesla 语音助手：说出你要去哪，路线连同途经点直接发到你的车上。",
+      title: "Omni Auto：开口，就出发",
+      description: "Omni 是 Tesla 语音助手：说出你要去哪，路线连同途经点直接发到你的车上。",
     },
   },
 } as const;

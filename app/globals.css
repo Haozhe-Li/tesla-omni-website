@@ -1,34 +1,40 @@
 @import "tailwindcss";
 
-/* The app icon's colors: deep teal rings, a copper ring, a pale teal one. */
-@theme {
-  --color-teal: #1a7479;
-  --color-teal-deep: #106268;
-  --color-mist: #5fa49f;
-  --color-copper: #e07335;
-}
-
+/* Black and white, like the app, with its two lights: blue while you speak, copper while Omni
+   does. The page follows the system's light or dark appearance. */
 :root {
-  --bg: #f7f9f9;
-  --ink: #0f1c1d;
-  --muted: #586b6c;
-  --card: rgba(255, 255, 255, 0.72);
-  --line: rgba(15, 28, 29, 0.09);
-  --accent: #1a7479; /* teal text and icons */
-  --glow-teal: rgba(26, 116, 121, 0.16);
-  --glow-copper: rgba(224, 115, 53, 0.14);
+  color-scheme: light dark;
+  --bg: #fafafa;
+  --ink: #0a0a0a;
+  --muted: #66666b;
+  --faint: #a1a1a6;
+  --line: rgba(0, 0, 0, 0.08);
+  --grid: rgba(0, 0, 0, 0.05);
+  --card: #ffffff;
+  --bubble: #e9e9eb; /* what you say, as in the app's call */
+  /* the phone's screen: the app's own colors */
+  --screen: #f3f3f6;
+  --screen-bubble: #e0e0e0;
+  --screen-dim: #6b6b6b;
+  --glass: rgba(255, 255, 255, 0.7);
+  --user: #4d85ff;
+  --agent: #f5803d;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #081011;
-    --ink: #ecf3f3;
-    --muted: #93a6a7;
-    --card: rgba(255, 255, 255, 0.05);
+    --bg: #0a0a0a;
+    --ink: #ededed;
+    --muted: #8e8e93;
+    --faint: #5c5c61;
     --line: rgba(255, 255, 255, 0.09);
-    --accent: #74c2bb;
-    --glow-teal: rgba(95, 164, 159, 0.16);
-    --glow-copper: rgba(224, 115, 53, 0.12);
+    --grid: rgba(255, 255, 255, 0.045);
+    --card: #111112;
+    --bubble: #1f1f21;
+    --screen: #151516;
+    --screen-bubble: #2b2b2b;
+    --screen-dim: #808080;
+    --glass: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -36,10 +42,20 @@
   --color-bg: var(--bg);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-card: var(--card);
+  --color-faint: var(--faint);
   --color-line: var(--line);
-  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-bubble: var(--bubble);
+  --color-screen: var(--screen);
+  --color-screen-bubble: var(--screen-bubble);
+  --color-screen-dim: var(--screen-dim);
+  --color-glass: var(--glass);
+  --color-user: var(--user);
+  --color-agent: var(--agent);
   --font-sans: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+  /* Omni's words in the app: New York on Apple devices */
+  --font-serif: ui-serif, "New York", Georgia, "Songti SC", serif;
 }
 
 html {
@@ -51,30 +67,66 @@ body {
   color: var(--ink);
 }
 
-/* Soft teal and copper light behind the page's top, like the icon's rings. */
-.aura {
-  background:
-    radial-gradient(40rem 28rem at 15% -10%, var(--glow-teal), transparent 70%),
-    radial-gradient(36rem 26rem at 95% 10%, var(--glow-copper), transparent 70%);
+::selection {
+  background: color-mix(in srgb, var(--agent) 30%, transparent);
+}
+
+/* A faint grid behind the top of the page, fading out downwards. */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* The light along the phone screen's edge, strongest at the bottom, as in the app's call. */
+.edge-glow {
+  box-shadow: inset 0 0 26px 6px var(--glow);
+  background: linear-gradient(to bottom, transparent 55%, color-mix(in srgb, var(--glow) 22%, transparent));
+  mask-image: linear-gradient(to bottom, transparent 10%, #000 80%);
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+}
+.breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--agent) 45%, transparent); }
+  50% { box-shadow: 0 0 0 5px transparent; }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breathe,
+  .pulse-dot {
+    animation: none;
+  }
 }
 
 /* The privacy policy and support text (content/legal.ts). */
 .legal h1 {
-  font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0.5rem 0 0.75rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: 0 0 0.75rem;
 }
 .legal h2 {
-  font-size: 1.3rem;
-  font-weight: 650;
-  margin: 2.5rem 0 0.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 3rem 0 0.5rem;
 }
 .legal h3 {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 1.75rem 0 0.25rem;
 }
@@ -82,23 +134,30 @@ body {
 .legal li {
   margin: 0.6rem 0;
   line-height: 1.75;
+  color: color-mix(in srgb, var(--ink) 82%, var(--bg));
 }
 .legal ul {
-  padding-left: 1.4rem;
+  padding-left: 1.25rem;
   list-style: disc;
 }
 .legal li::marker {
-  color: var(--accent);
+  color: var(--faint);
 }
 .legal a {
-  color: var(--accent);
+  color: var(--ink);
   text-decoration: underline;
+  text-decoration-color: var(--faint);
   text-underline-offset: 3px;
+}
+.legal a:hover {
+  text-decoration-color: var(--ink);
 }
 .legal b {
   font-weight: 600;
+  color: var(--ink);
 }
 .legal .muted {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
 }

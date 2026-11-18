@@ -1,35 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { COPY, href, type Lang } from "@/content/home";
+import { COPY, type Lang } from "@/content/home";
 
-/** The bar along the top: the mark and name (home), the page links, and the other language. */
-export function SiteHeader({ lang, other }: { lang: Lang; other: string }) {
+// Links are plain <a> to the shared addresses (/, /privacy, /support): each page load picks the
+// browser's language again (next.config.ts), with no client-side routing to second-guess it.
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/** The bar along the top: the mark and name (home), and the page links. */
+export function SiteHeader({ lang }: { lang: Lang }) {
   const t = COPY[lang].nav;
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-bg/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link href={href(lang, "/")} className="flex shrink-0 items-center gap-2.5 font-semibold tracking-tight whitespace-nowrap">
-          <Image src="/logo.png" alt="" width={32} height={32} priority />
-          <span className="text-[17px]">Omni Auto</span>
-        </Link>
-        <nav className="flex items-center gap-0.5 text-[14px] whitespace-nowrap text-muted sm:gap-1 sm:text-[15px]">
-          <Link href={`${href(lang, "/")}#features`} className="hidden rounded-full px-3 py-1.5 hover:text-ink md:block">
-            {t.features}
-          </Link>
-          <Link href={href(lang, "/privacy")} className="rounded-full px-2 py-1.5 hover:text-ink sm:px-3">
-            {t.privacy}
-          </Link>
-          <Link href={href(lang, "/support")} className="rounded-full px-2 py-1.5 hover:text-ink sm:px-3">
-            {t.support}
-          </Link>
-          <Link
-            href={other}
-            lang={lang === "en" ? "zh-Hans" : "en"}
-            className="ml-1 rounded-full border border-line px-2.5 py-1.5 text-ink hover:border-teal/40 sm:px-3"
-          >
-            {t.other}
-          </Link>
+    <header className="sticky top-0 z-30 border-b border-line bg-bg/75 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+        <a href="/" className="flex shrink-0 items-center gap-2 text-[15px] font-semibold tracking-tight">
+          <Image src="/logo.png" alt="" width={26} height={26} priority />
+          Omni Auto
+        </a>
+        <nav className="flex items-center gap-5 text-sm whitespace-nowrap text-muted sm:gap-7">
+          <a href="/#how" className="hidden transition-colors hover:text-ink sm:block">{t.how}</a>
+          <a href="/privacy" className="transition-colors hover:text-ink">{t.privacy}</a>
+          <a href="/support" className="transition-colors hover:text-ink">{t.support}</a>
         </nav>
       </div>
     </header>
