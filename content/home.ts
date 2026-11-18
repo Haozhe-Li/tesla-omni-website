@@ -48,6 +48,7 @@ export const COPY = {
     ],
     privacyLink: "Read the privacy policy",
     disclaimer: "Omni Auto is an independent app, not affiliated with or endorsed by Tesla, Inc.",
+    madeBy: "Made by",
     meta: {
       title: "Omni Auto: your Tesla, by voice",
       description: "Omni is the voice assistant for your Tesla: say where you are going, and the route, stops and all, goes straight to your car.",
@@ -90,6 +91,7 @@ export const COPY = {
     ],
     privacyLink: "阅读隐私政策",
     disclaimer: "Omni Auto 是独立的第三方 App，与 Tesla, Inc. 没有关联，也未获其认可。",
+    madeBy: "作者",
     meta: {
       title: "Omni Auto：开 Tesla，动动嘴就行",
       description: "Omni 是你的 Tesla 语音助手：说出你要去哪，路线连同途经点直接发到你的车上。",

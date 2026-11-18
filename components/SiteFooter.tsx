@@ -7,7 +7,10 @@ export function SiteFooter({ lang }: { lang: Lang }) {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Omni Auto</p>
+        <p>
+          © 2026 Omni Auto · {t.madeBy}{" "}
+          <a href="https://haozhe.li" className="text-ink hover:text-accent">Haozhe Li</a>
+        </p>
         <nav className="flex gap-5">
           <Link href={href(lang, "/privacy")} className="hover:text-ink">{t.nav.privacy}</Link>
           <Link href={href(lang, "/support")} className="hover:text-ink">{t.nav.support}</Link>

@@ -4,7 +4,7 @@
 // UPDATED with it. {contact} is filled from CONTACT_EMAIL; with no address the lines go.
 
 /** Where users write to us; contact lines are left out while it is empty. */
-export const CONTACT_EMAIL = "";
+export const CONTACT_EMAIL = "mail@haozheli.com";
 
 export const UPDATED = {"zh": "2026 年 11 月 17 日", "en": "November 17, 2026"} as const;
 
