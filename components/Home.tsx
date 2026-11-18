@@ -1,6 +1,7 @@
 import {
   ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   CloudRain,
   Coffee,
   Gauge,
@@ -14,7 +15,7 @@ import {
 import { CallDemo } from "@/components/CallDemo";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { COPY, type AskIcon, type Lang } from "@/content/home";
+import { COPY, TESTFLIGHT, type AskIcon, type Lang } from "@/content/home";
 
 const ICONS: Record<AskIcon, LucideIcon> = {
   route: Route,
@@ -47,9 +48,13 @@ export function Home({ lang }: { lang: Lang }) {
               </h1>
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">{t.lead}</p>
               <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-2">
-                <span className="inline-flex h-11 items-center rounded-full bg-ink px-5 text-[15px] font-medium text-bg">
-                  {t.soon}
-                </span>
+                <a
+                  href={TESTFLIGHT}
+                  className="inline-flex h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-[15px] font-medium text-bg transition-opacity hover:opacity-85"
+                >
+                  {t.beta}
+                  <ArrowUpRight className="size-4" />
+                </a>
                 <a
                   href="#how"
                   className="inline-flex h-11 items-center gap-1.5 text-[15px] font-medium text-muted transition-colors hover:text-ink"

@@ -3,6 +3,9 @@
 
 export type Lang = "en" | "zh";
 
+/** The public beta: where the hero's button goes. */
+export const TESTFLIGHT = "https://testflight.apple.com/join/D3nNPqQ1";
+
 export type AskIcon = "route" | "charger" | "stop" | "weather" | "web" | "car";
 
 export const COPY = {
@@ -12,7 +15,7 @@ export const COPY = {
     title: "Just say where.",
     title2: "Omni sends it\nto your Tesla.", // \n: where the line breaks on wider screens
     lead: "Tell Omni where you are going. It finds the places, plans the stops and sends the route to your car, while your hands stay on the wheel.",
-    soon: "Coming soon to the App Store",
+    beta: "Beta on TestFlight",
     how: "How it works",
     // The call on the phone: what you say, what Omni does, what it answers.
     call: {
@@ -54,7 +57,7 @@ export const COPY = {
     title: "开口，就出发。",
     title2: "Omni 把路线\n发到你的 Tesla。",
     lead: "告诉 Omni 你要去哪。它找到地点、排好途经点，把路线发到你的车上，你的手一直在方向盘上。",
-    soon: "即将上架 App Store",
+    beta: "TestFlight 测试版",
     how: "怎么用",
     call: {
       you: "去最近的麦当劳，然后回家",
